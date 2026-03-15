@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+/* ─── Palette ─────────────────────────────────────────────────────────────── */
+:root {
+  /* Foundation */
+  --bg:           #0E1008;   /* forest-black */
+  --bg-raised:    #141509;   /* cards, inputs */
+  --bg-surface:   #191C0C;   /* hover state */
+
+  /* Text — strong contrast hierarchy */
+  --text-primary:   #F5F5F0;   /* warm white */
+  --text-secondary: #A8A898;   /* supporting copy */
+  --text-muted:     #5C5C4A;   /* labels, footnotes */
+  --text-faint:     #2E2E22;   /* dividers only */
+
+  /* Accent — cool slate */
+  --accent:         #8B9EC3;
+  --accent-dim:     #6B7E9E;
+  --accent-glow:    rgba(139, 158, 195, 0.14);
+  --accent-line:    rgba(139, 158, 195, 0.4);
+
+  /* Borders — visible but not loud */
+  --border:         #232418;
+  --border-soft:    #1E2114;
+
+  /* Font families — NOTE: --font-mono is the CSS var from next/font,
+     so we use a different name for the stack */
+  --font-display: var(--font-playfair), "Georgia", serif;
+  --font-body:    var(--font-jakarta), system-ui, -apple-system, sans-serif;
+  --font-code:    var(--font-mono), "JetBrains Mono", "Fira Code", monospace;
+
+  /* Spacing scale */
+  --section-pad-v: clamp(4rem, 9vw, 8rem);
+  --section-pad-h: clamp(1.25rem, 5vw, 2.5rem);
+  --content-max:   1080px;
+}
+
+/* ─── Reset ─────────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ─── Grain overlay ─────────────────────────────────────────────────────────── */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  mix-blend-mode: overlay;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #3a3d28; }
+
+/* ─── Selection ─────────────────────────────────────────────────────────────── */
+::selection {
+  background: var(--accent-glow);
+  color: var(--accent);
+}
+
+/* ─── Section wrapper utility ───────────────────────────────────────────────── */
+.section-wrap {
+  padding: var(--section-pad-v) var(--section-pad-h);
+  border-top: 1px solid var(--border);
+}
+
+.section-inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+/* ─── Eyebrow — mono all-caps label ────────────────────────────────────────── */
+.eyebrow {
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2.5rem;
+  display: block;
+}
+
+/* ─── Section heading ───────────────────────────────────────────────────────── */
+.section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.8vw, 3rem);
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  color: var(--text-primary);
+  margin-bottom: 1.75rem;
+}
+
+/* ─── Accent animated underline ─────────────────────────────────────────────── */
+.accent-underline {
+  text-decoration: none;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  transition: background-size 0.35s ease;
+}
+.accent-underline:hover {
+  background-size: 100% 1px;
+}
+
+/* ─── Two-column responsive grid ────────────────────────────────────────────── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem 5rem;
+  align-items: start;
+}
+
+@media (max-width: 720px) {
+  .two-col {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+/* ─── Body copy ─────────────────────────────────────────────────────────────── */
+.body-copy {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+}
+
+/* ─── Mono label (field labels, tech tags) ──────────────────────────────────── */
+.mono-label {
+  font-family: var(--font-code);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
