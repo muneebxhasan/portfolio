@@ -55,14 +55,7 @@ export default function Contact() {
             Contact
           </motion.p>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "5rem",
-              alignItems: "start",
-            }}
-          >
+          <div className="contact-grid">
             {/* Left — editorial intro */}
             <div>
               <motion.h2
@@ -153,7 +146,7 @@ export default function Contact() {
                   onSubmit={handleSubmit}
                   style={{ display: "flex", flexDirection: "column", gap: "1.1rem" }}
                 >
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                  <div className="fields-row">
                     <Field
                       label="Name"
                       name="name"

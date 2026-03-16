@@ -154,6 +154,39 @@ body::after {
   line-height: 1.85;
 }
 
+/* ─── Navbar mobile ─────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .nav-cta   { display: none; }
+  .nav-hamburger { display: flex !important; }
+}
+
+/* ─── Contact form fields grid ──────────────────────────────────────────────── */
+.fields-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+@media (max-width: 640px) {
+  .fields-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Contact two-col override ──────────────────────────────────────────────── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+@media (max-width: 720px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
 /* ─── Mono label (field labels, tech tags) ──────────────────────────────────── */
 .mono-label {
   font-family: var(--font-code);

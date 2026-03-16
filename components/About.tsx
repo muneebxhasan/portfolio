@@ -47,14 +47,7 @@ export default function About() {
           </motion.p>
 
           {/* Two-column layout */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "5rem",
-              alignItems: "start",
-            }}
-          >
+          <div className="two-col">
             {/* Left — editorial text block */}
             <div>
               <motion.h2
